@@ -1,0 +1,40 @@
+/*
+ *    Copyright 2021 Serena Tiede
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+
+syntax = "proto3";
+
+message ServiceRequest {
+    string service_name = 1;
+    ServiceState state = 2;
+}
+
+message ServiceResponse {
+    string service_name = 1;
+    ServiceState state = 2;
+    optional Error error = 3;
+}
+
+enum ServiceState {
+    SERVICE_STATE_UNSPECIFIED = 0;
+    SERVICE_STATE_START = 1;
+    SERVICE_STATE_STOP = 2;
+    SERVICE_STATE_RESTART = 3;
+}
+
+message Error {
+    int32 code = 1;
+    string message = 2;
+}
